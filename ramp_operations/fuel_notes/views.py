@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required, user_passes_test
+from .models import AircraftNote
 
 @login_required
 def user_redirect(request):
@@ -15,6 +16,9 @@ def user_redirect(request):
         # Redirect to a default page if the user doesn't belong to any group
         return render(request, 'index.html')
 
+def unit_one_notes(request):
+    notes = AircraftNote.objects.all()
+    return render(request, 'unit_one_notes.html', {'notes': notes})
 
 def is_admin(user):
     return user.groups.filter(name='Admin').exists() or user.is_superuser
