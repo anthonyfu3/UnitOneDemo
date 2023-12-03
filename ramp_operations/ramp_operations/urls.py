@@ -18,4 +18,6 @@ urlpatterns = [
     path('unit_one_notes/', views.unit_one_notes, name='unit_one_notes'),
     path('unit_one/add_note/', views.add_note_view, name='add_note'),
     path('unit_one/', views.unit_one_notes, name='unit_one_notes'),
+    path('get-note/<int:note_id>/', views.get_note_data, name='get_note_data'),
+    path('edit-note/<int:note_id>/', views.edit_note_view, name='edit_note'),
 ]

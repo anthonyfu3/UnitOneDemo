@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 
 class AircraftNote(models.Model):
@@ -135,3 +136,4 @@ class AircraftNote(models.Model):
     ladder_status = models.CharField(max_length=10, choices=LADDER_STATUS_CHOICES, null=True, blank=True)
     vacuum_status = models.CharField(max_length=10, choices=VACUUM_STATUS_CHOICES, null=True, blank=True)
     notes = models.TextField(null=True, blank=True)
+    created_at = models.DateTimeField(default=timezone.now)
