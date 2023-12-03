@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth.decorators import login_required, user_passes_test
 from .models import AircraftNote
+from .forms import NoteForm
+from datetime import date, datetime
 
 @login_required
 def user_redirect(request):
@@ -31,6 +33,33 @@ def is_fueler(user):
 
 def is_overview(user):
     return user.groups.filter(name='Overview').exists()
+
+def your_view(request):
+    if request.method == 'POST':
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Redirect or handle as necessary
+    else:
+        form = NoteForm()
+
+    return render(request, 'form_template.html', {'form': form})
+
+def add_note_view(request):
+    if request.method == 'POST':
+        form = NoteForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('unit_one_ui')  # Redirect to the Unit One UI page
+    else:
+        form = NoteForm()
+    
+    return render(request, 'unit_one_ui.html', {'form': form})
+
+def unit_one_notes(request):
+    selected_date = request.GET.get('date', date.today().strftime("%Y-%m-%d"))
+    notes = AircraftNote.objects.filter(service_time__date=selected_date)
+    return render(request, 'unit_one_ui.html', {'notes': notes, 'current_date': selected_date})
 
 @login_required
 @user_passes_test(is_admin, login_url='/', redirect_field_name=None)

@@ -16,4 +16,6 @@ urlpatterns = [
     path('fueler_ui/', views.fueler_ui, name='fueler_ui'),
     path('overview_ui/', views.overview_ui, name='overview_ui'),
     path('unit_one_notes/', views.unit_one_notes, name='unit_one_notes'),
+    path('unit_one/add_note/', views.add_note_view, name='add_note'),
+    path('unit_one/', views.unit_one_notes, name='unit_one_notes'),
 ]

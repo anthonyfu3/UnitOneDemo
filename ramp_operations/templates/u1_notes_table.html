@@ -1,0 +1,86 @@
+<!-- notes_table.html -->
+
+<table id="notesTable" class="cell-border table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Tail</th>
+            <th>Status</th>
+            <th>Service Time</th>
+            <th>A/C Type</th>
+            <th>Loc.</th>
+            <th>ETA</th>
+            <th>ATD</th>
+            <th>Pax</th>
+            <th>Fuel Type</th>
+            <th>Fuel QTY</th>
+            <th>Fuel Format</th>
+            <th>Lav Status</th>
+            <th>Lav Type</th>
+            <th>Lav Gal.</th>
+            <th>Water Status</th>
+            <th>GPU</th>
+            <th>PIC</th>
+            <th>Cat.</th>
+            <th>Cat. #</th>
+            <th>Vacuum</th>
+            <th>Oil</th>
+            <th>Oil Type</th>
+            <th>Oil QTY</th>
+            <th>Ladder</th>
+            <th>Notes</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for note in notes %}
+        <tr>
+            <td>{{ note.tail_number }}</td>
+            <td>{{ note.status }}</td>
+            <td>{{ note.service_time }}</td>
+            <td>{{ note.aircraft_type }}</td>
+            <td>{{ note.location }}</td>
+            <td>{{ note.eta }}</td>
+            <td>{{ note.atd }}</td>
+            <td>{{ note.passenger }}</td>
+            <td>{{ note.fuel_type }}</td>
+            <td>{{ note.fuel_qty }}</td>
+            <td>{{ note.fuel_format }}</td>
+            <td>{{ note.lav_status }}</td>
+            <td>{{ note.lav_type }}</td>
+            <td>{{ note.lav_gal }}</td>
+            <td>{{ note.water_status }}</td>
+            <td>{{ note.gpu }}</td>
+            <td>{{ note.pic }}</td>
+            <td>{{ note.catering }}</td>
+            <td>{{ note.catering_number }}</td>
+            <td>{{ note.vacuum }}</td>
+            <td>{{ note.oil }}</td>
+            <td>{{ note.oil_type }}</td>
+            <td>{{ note.oil_qty }}</td>
+            <td>{{ note.ladder }}</td>
+            <td>{{ note.notes }}</td>
+            <td>
+                <button class="btn btn-primary action-btn">Action</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<!-- DataTables Bootstrap 5 JS -->
+<script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#notesTable').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "responsive": true  // Optional: makes the table responsive
+        });
+    });
+</script>
